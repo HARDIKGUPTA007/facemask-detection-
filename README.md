@@ -6,6 +6,7 @@ Overview
    Facemask Detection is an AI-based project designed to identify whether individuals are wearing face masks properly. This system uses machine learning and computer vision techniques to detect faces in real-time 
    and classify them as masked, unmasked, or improperly masked. Such a solution is particularly useful in enforcing health protocols in public places, workplaces, or any crowded environment.
 
+
 **Features**
 
  1. Real-Time Detection: Detects facemask usage in live camera feeds or pre-recorded video footage.
