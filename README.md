@@ -10,16 +10,23 @@ Overview
 **Features**
 
  1. Real-Time Detection: Detects facemask usage in live camera feeds or pre-recorded video footage.
+    
  2.High Accuracy: Trained using diverse datasets to ensure reliability across different lighting and environmental conditions.
+ 
  3.Multi-Class Classification: Classifies faces into categories such as masked, unmasked, or improperly masked.
+ 
  4.Easy Integration: Can be integrated with existing surveillance systems or standalone devices.
+ 
  5.Visual Alerts: Provides visual cues for non-compliance.
 
 
 **Applications**
  1.Public Health: Enforces health protocols in crowded areas like airports, malls, and public transport.
+ 
  2.Workplace Safety: Monitors compliance in offices, factories, and warehouses.
+ 
  3.Education: Ensures mask usage in schools and universities.
+ 
  4.Event Management: Controls mask compliance at large gatherings or events.
 
  
