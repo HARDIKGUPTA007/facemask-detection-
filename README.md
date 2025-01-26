@@ -1,54 +1,97 @@
-**Facemask Detection**
 
-Overview
+# **Facemask Detection**
 
+## **Overview**
+Facemask Detection is an AI-powered project that utilizes deep learning and computer vision to identify whether individuals are wearing face masks correctly. The system can classify faces as **masked**, **unmasked**, or **improperly masked**, making it useful for enforcing health protocols in various environments.
 
-   Facemask Detection is an AI-based project designed to identify whether individuals are wearing face masks properly. This system uses machine learning and computer vision techniques to detect faces in real-time 
-   and classify them as masked, unmasked, or improperly masked. Such a solution is particularly useful in enforcing health protocols in public places, workplaces, or any crowded environment.
+---
 
+## **Setup Instructions**
 
-**Features**
+### **Clone the Repository**
+Clone the Ultralytics YOLO repository for facemask detection:  
+```bash
+git clone https://github.com/ultralytics/ultralytics
+cd ultralytics
+```
 
- 1. Real-Time Detection: Detects facemask usage in live camera feeds or pre-recorded video footage.
-    
- 2.High Accuracy: Trained using diverse datasets to ensure reliability across different lighting and environmental conditions.
- 
- 3.Multi-Class Classification: Classifies faces into categories such as masked, unmasked, or improperly masked.
- 
- 4.Easy Integration: Can be integrated with existing surveillance systems or standalone devices.
- 
- 5.Visual Alerts: Provides visual cues for non-compliance.
+### **Install Dependencies**
+Install the required libraries for YOLOv8 and Roboflow:  
+```bash
+pip install ultralytics
+pip install roboflow
+```
 
+### **Download the Dataset**
+Use Roboflow to access the facemask dataset and prepare it for training:  
+```python
+from roboflow import Roboflow
 
-**Applications**
- 1.Public Health: Enforces health protocols in crowded areas like airports, malls, and public transport.
- 
- 2.Workplace Safety: Monitors compliance in offices, factories, and warehouses.
- 
- 3.Education: Ensures mask usage in schools and universities.
- 
- 4.Event Management: Controls mask compliance at large gatherings or events.
+rf = Roboflow(api_key="YOUR_API_KEY")
+project = rf.workspace("YOUR_WORKSPACE_NAME").project("mask-wearing")
+dataset = project.version(4).download("yolov8")
+```
 
- 
- 
-**How It Works**
- 1.Face Detection: Uses a deep learning model to identify and locate faces in images or video frames.
- 2.Mask Classification: Applies a trained classifier to determine the mask status (masked, unmasked, improperly masked).
- 3.Alert Mechanism: Triggers visual or audible alerts for unmasked individuals.
+Replace `YOUR_API_KEY` and `YOUR_WORKSPACE_NAME` with your Roboflow API key and workspace name.
 
- 
-**Technologies Used**
- 1.Machine Learning Frameworks: TensorFlow, PyTorch.
- 2.Object Detection Models: YOLO, SSD, or Haar Cascades.
- 3.Computer Vision Libraries: OpenCV.
- 4.Dataset: Trained on large, publicly available facemask datasets to ensure diverse representation.
+### **Train the Model**
+Train the YOLOv8 model using the downloaded dataset:  
+```python
+from ultralytics import YOLO
 
- 
- 
-**Future Enhancements** 
- 1.Mask Color and Type Detection: Identify specific types of masks (e.g., N95, cloth, surgical).
- 2.Crowd Analytics: Generate statistical reports on mask compliance in large gatherings.
- 3.Integration with IoT: Build hardware devices for automatic mask detection.
-**Acknowledgments**
-Researchers and organizations that provided open datasets for training.
-Open-source communities for continuous contributions to AI and computer vision.
+model = YOLO("yolov8n.pt")  # Load pre-trained YOLOv8 model
+model.train(data="dataset.yaml", epochs=50)  # Train on facemask dataset
+```
+
+### **Test the Model**
+Run the trained model on test images or video:  
+```python
+results = model.predict(source="path/to/test/image_or_video.mp4", show=True)
+```
+
+---
+
+## **Features**
+1. **Real-Time Detection**: Detects facemask usage in live camera feeds or video footage.  
+2. **Multi-Class Classification**: Identifies faces as masked, unmasked, or improperly masked.  
+3. **High Accuracy**: Trained on diverse datasets for robust performance across conditions.  
+4. **Custom Alerts**: Provides visual or audible notifications for non-compliance.
+
+---
+
+## **Technologies Used**
+- **YOLOv8**: A state-of-the-art object detection model.  
+- **Roboflow**: For dataset management and augmentation.  
+- **Python Libraries**: OpenCV, TensorFlow, and PyTorch.
+
+---
+
+## **Applications**
+1. **Public Health**: Enforces mask compliance in crowded areas.  
+2. **Workplace Safety**: Monitors mask usage in offices and factories.  
+3. **Education**: Ensures proper mask usage in schools.  
+4. **Event Management**: Controls compliance in large gatherings.
+
+---
+
+## **Future Enhancements**
+1. **Mask Type Identification**: Detect specific mask types like N95 or surgical masks.  
+2. **Crowd Analytics**: Analyze trends in mask compliance.  
+3. **IoT Integration**: Deploy on standalone hardware for real-time monitoring.
+
+---
+
+## **Acknowledgments**
+- **Ultralytics**: For providing YOLOv8 as a robust object detection framework.  
+- **Roboflow**: For accessible datasets and tools.  
+- Open-source communities for their contributions to AI and computer vision.
+
+---
+
+## **License**
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## **Contact**
+For inquiries or contributions, feel free to contact [your email/contact info].
